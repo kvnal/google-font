@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import WebFont from 'webfontloader';
 import './App.css';
 
+
+
 function App() {
+  const setFont = (fontName) => {
+    WebFont.load({
+      google: {
+        families: [fontName, 'Droid Serif']
+      }
+    });
+    return setFontName(fontName);
+  };
+
+
+  var [fontName, setFontName] = useState("Inter");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div>
+
+      <div className="output">
+        <p style={{ fontFamily: fontName }}>
+          hello
+      </p>
+      </div>
+      <div className="input">
+        <input type="text" onChange={(e) => setFont(e.target.value)} />
+      </div>
+      </div>
+
     </div>
   );
 }
